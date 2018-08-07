@@ -2,6 +2,8 @@ var express = require('express');
 var chalk = require('chalk');
 var debug = require('debug')('app');
 var morgan = require('morgan');
+var path = require('path');
+
 
 var app = express();
 
@@ -11,7 +13,11 @@ app.use(morgan('tiny'));
 
 // express is used to route requests
 app.get('/',function(request, response){
-    response.send('Hello from library app.');
+    //we need to send fully qualified path of file
+    // using __dirname, which gives location of current executable. we can 
+    //use a kind of relative path but this has issue between platforms
+    // of mac and windows so we use path
+    response.sendFile(path.join(__dirname,"views","index.html"));
 }); 
 
 
