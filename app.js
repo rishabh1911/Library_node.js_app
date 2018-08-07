@@ -11,6 +11,13 @@ var app = express();
 app.use(morgan('tiny'));
 //use static files in public folder
 app.use(express.static(path.join(__dirname,'public')));
+//to avoid copy paste of js and css files we can give commands for alternate paths.
+app.use('/css',express.static(path.join(__dirname,'/node_modules/bootstrap/dist/css')));
+app.use('/js',express.static(path.join(__dirname,'/node_modules/bootstrap/dist/js')));
+app.use('/js',express.static(path.join(__dirname,'/node_modules/jquery/dist')));
+app.use('/js',express.static(path.join(__dirname,'/node_modules/popper/dist')));
+
+
 
 
 // express is used to route requests
