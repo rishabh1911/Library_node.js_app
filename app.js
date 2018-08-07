@@ -9,6 +9,8 @@ var app = express();
 
 //morgan used to console log all web traffic logs
 app.use(morgan('tiny'));
+//use static files in public folder
+app.use(express.static(path.join(__dirname,'public')));
 
 
 // express is used to route requests
