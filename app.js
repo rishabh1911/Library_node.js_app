@@ -4,7 +4,7 @@ const debug = require('debug')('app');
 const morgan = require('morgan');
 const path = require('path');
 
-
+const port = process.env.port || 8080;
 const app = express();
 
 // morgan used to console log all web traffic logs
@@ -36,6 +36,6 @@ app.listen(3000, () => {
   // console.log(`listening on ${chalk.red('port: ')} `+chalk.green(3000));
 
   // better not to use console.log() but use debug.
-  debug(`listening at ${chalk.red('port: ')} ${chalk.green('3000')}`);
+  debug(`listening at ${chalk.red('port: ')} ${chalk.green(port)}`);
   // now run app using: DEBUG=app node app.js
 });
