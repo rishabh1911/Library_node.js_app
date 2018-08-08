@@ -16,6 +16,8 @@ app.use('/css', express.static(path.join(__dirname, '/node_modules/bootstrap/dis
 app.use('/js', express.static(path.join(__dirname, '/node_modules/bootstrap/dist/js')));
 app.use('/js', express.static(path.join(__dirname, '/node_modules/jquery/dist')));
 app.use('/js', express.static(path.join(__dirname, '/node_modules/popper/dist')));
+app.set('views', './src/views');
+app.set('view engine', 'pug');
 
 
 // express is used to route requests
@@ -27,7 +29,9 @@ app.get('/', (request, response) => {
   response.sendFile(path.join(__dirname, 'views', 'index.html'));
 });
 
-
+app.get('/sendPug', (request,response) => {
+  response.render('index');
+});
 // now we can run app using command: node app.js
 // this command only runs the js file
 // thus understand express is just another js file.
