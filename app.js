@@ -17,20 +17,20 @@ app.use('/js', express.static(path.join(__dirname, '/node_modules/bootstrap/dist
 app.use('/js', express.static(path.join(__dirname, '/node_modules/jquery/dist')));
 app.use('/js', express.static(path.join(__dirname, '/node_modules/popper/dist')));
 app.set('views', './src/views');
-app.set('view engine', 'pug');
+app.set('view engine', 'ejs');
 
 
-// express is used to route requests
-app.get('/', (request, response) => {
-  // we need to send fully qualified path of file
-  // using __dirname, which gives location of current executable. we can
-  // use a kind of relative path but this has issue between platforms
-  // of mac and windows so we use path
-  response.sendFile(path.join(__dirname, 'views', 'index.html'));
-});
+// // express is used to route requests
+// app.get('/', (request, response) => {
+//   // we need to send fully qualified path of file
+//   // using __dirname, which gives location of current executable. we can
+//   // use a kind of relative path but this has issue between platforms
+//   // of mac and windows so we use path
+//   response.sendFile(path.join(__dirname, 'views', 'index.html'));
+// });
 
-app.get('/sendPug', (request, response) => {
-  response.render('index', { list: ['a', 'b'], title: 'pug html' });
+app.get('/library', (request, response) => {
+  response.render('index', { title: 'Library' });
 });
 // now we can run app using command: node app.js
 // this command only runs the js file
