@@ -29,8 +29,8 @@ app.get('/', (request, response) => {
   response.sendFile(path.join(__dirname, 'views', 'index.html'));
 });
 
-app.get('/sendPug', (request,response) => {
-  response.render('index');
+app.get('/sendPug', (request, response) => {
+  response.render('index', { list: ['a', 'b'], title: 'pug html' });
 });
 // now we can run app using command: node app.js
 // this command only runs the js file

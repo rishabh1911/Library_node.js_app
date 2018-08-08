@@ -1,7 +1,10 @@
 html
     head
-        title myApp
-    body
-        h1 my app
+        title(id='myTitle')=title
+    body(class=['myClass'])
+        h1(id='myId') my Page
         p
             h3 sub header
+            ul
+                each val in list
+                    li=val
