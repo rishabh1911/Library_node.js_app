@@ -3,8 +3,6 @@ const chalk = require('chalk');
 const debug = require('debug')('app');
 const morgan = require('morgan');
 const path = require('path'); // from node modules
-const bookRouter = require('./src/routes/bookRouter'); // from files
-const nav = require('./src/constants/nav');
 
 const port = process.env.port || 8080;
 const app = express();
@@ -30,6 +28,11 @@ app.set('view engine', 'ejs');
 //   // of mac and windows so we use path
 //   response.sendFile(path.join(__dirname, 'views', 'index.html'));
 // });
+
+const nav = [{ title: 'Books', link: '/books' },
+  { title: 'Author', link: 'authors' }];
+
+const bookRouter = require('./src/routes/bookRouter')(nav); // from files
 
 app.use('/books', bookRouter);
 
