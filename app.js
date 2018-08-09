@@ -30,7 +30,15 @@ app.set('view engine', 'ejs');
 // });
 
 app.get('/library', (request, response) => {
-  response.render('index', { title: 'Library' });
+  response.render(
+    'index',
+    {
+      nav:
+        [{ title: 'Books', link: 'books' },
+          { title: 'Authors', link: 'authors' }],
+      title: 'Library'
+    }
+  );
 });
 // now we can run app using command: node app.js
 // this command only runs the js file
