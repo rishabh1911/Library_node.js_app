@@ -55,9 +55,19 @@ const books = [
 
 bookRouter.route('/')
   .get((req, res) => {
-    res.render('books', {
+    res.render('bookListView', {
       title: 'books',
       books,
+      nav
+    });
+  });
+
+bookRouter.route('/:id')
+  .get((req, res) => {
+    const { id } = req.params;
+    res.render('bookView', {
+      title: 'books',
+      book: books[id],
       nav
     });
   });
