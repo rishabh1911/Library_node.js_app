@@ -2,13 +2,18 @@ const express = require('express');
 const chalk = require('chalk');
 const debug = require('debug')('app');
 const morgan = require('morgan');
-const path = require('path'); // from node modules
+const path = require('path');
+const bodyparser = require('body-parser');// from node modules
+
 
 const port = process.env.port || 8080;
 const app = express();
 
 // morgan used to console log all web traffic logs
 app.use(morgan('tiny'));
+// to get body from post
+app.use(bodyparser.json());
+app.use(bodyparser.urlencoded({ extended: false }));
 // use static files in public folder
 app.use(express.static(path.join(__dirname, 'public')));
 // to avoid copy paste of js and css files we can give commands for alternate paths.
@@ -32,11 +37,13 @@ app.set('view engine', 'ejs');
 const nav = [{ title: 'Books', link: '/books' },
   { title: 'Author', link: 'authors' }];
 
-const bookRouter = require('./src/routes/bookRouter')(nav); // from files
+const bookRoutes = require('./src/routes/bookRouter')(nav); // from files
 const adminRoutes = require('./src/routes/adminRouter')();
+const authRoutes = require('./src/routes/authRouter')();
 
-app.use('/books', bookRouter);
+app.use('/books', bookRoutes);
 app.use('/admin', adminRoutes);
+app.use('/auth', authRoutes);
 
 app.get('/', (request, response) => {
   response.render(
