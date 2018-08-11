@@ -33,8 +33,10 @@ const nav = [{ title: 'Books', link: '/books' },
   { title: 'Author', link: 'authors' }];
 
 const bookRouter = require('./src/routes/bookRouter')(nav); // from files
+const adminRoutes = require('./src/routes/adminRouter')(nav);
 
 app.use('/books', bookRouter);
+app.use('/admin', adminRoutes);
 
 app.get('/', (request, response) => {
   response.render(
