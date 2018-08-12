@@ -1,10 +1,10 @@
 const express = require('express');
-const debug = require('debug')('app:adminRoutes');
-const mongoService = require('../repo/mongoService');
+const bookController = require('../controller/bookController');
 
 const bookRouter = express.Router();
 
 function router(nav) {
+  const { getAllBooks, getBookById } = bookController(nav);
   // adding middleware to stop access to book before authentication
   bookRouter.use((req, res, next) => {
     if (req.user) {
@@ -16,32 +16,10 @@ function router(nav) {
 
   // All book Routes
   bookRouter.route('/')
-    .get((req, res) => {
-      debug('Books listed');
-      (async function f2() {
-        const books = await mongoService.getAllBooks.mgetAllBooks();
-        res.render('bookListView', {
-          title: 'books',
-          books,
-          nav
-        });
-      }());
-    });
+    .get(getAllBooks);
 
   bookRouter.route('/:id')
-    .get((req, res) => {
-      const { id } = req.params;
-      (async function f3() {
-        debug('A');
-        const book = await mongoService.getBookById.mGetBookbyId(id);
-        debug(book);
-        res.render('bookView', {
-          title: 'books',
-          book,
-          nav
-        });
-      }());
-    });
+    .get(getBookById);
 
   return bookRouter;
 }
