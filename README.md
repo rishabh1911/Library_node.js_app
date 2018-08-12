@@ -20,9 +20,9 @@ Library is a small app which I created to learn node.js with express. It has the
 
 ### Installation
 
-  -Library runs on  [Node.js](https://nodejs.org/) version 10.4.1. Please have node and npm setup before to run this.  
+  - Library runs on  [Node.js](https://nodejs.org/) version 10.4.1. Please have node and npm setup before to run this.  
 
-  -It uses mongoDB as database. Please install mongodb and run its server before starting the application.
+  - It uses mongoDB as database. Please install mongodb and run its server before starting the application.
 
 ```sh
 $ git clone https://github.com/rishabh1911/library.git
@@ -36,8 +36,8 @@ $ git clone https://github.com/rishabh1911/library.git
 $ npm run startWindows
 ```
   
-  -Open browser and hit url http://localhost:3000/admin once.
-  -Open http://localhost:3000/ on browser to run the app.
+  - Open browser and hit url http://localhost:3000/admin once.
+  - Open http://localhost:3000/ on browser to run the app.
 
 ### Tools
 
