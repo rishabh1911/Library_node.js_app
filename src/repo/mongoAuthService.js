@@ -1,5 +1,5 @@
 const debug = require('debug')('app:mongoAuthService');
-const { MongoClient, ObjectID } = require('mongodb');
+const { MongoClient } = require('mongodb');
 const mongoConstants = require('../constants/mongoConstants');
 
 const addUser = {
@@ -19,4 +19,25 @@ const addUser = {
   }
 };
 
-module.exports = addUser;
+const findUser = {
+  async mFindUserByUserName(user) {
+    let client;
+    try {
+      client = await MongoClient.connect(mongoConstants.mongoUrl, { useNewUrlParser: true });
+      debug('Connected to mongoDB');
+      const db = client.db(mongoConstants.dbName);
+      debug(user);
+      const returnedUser = await db.collection(mongoConstants.authCollectionName)
+        .findOne(user);
+      debug(returnedUser);
+      return returnedUser;
+    } catch (err) {
+      debug(err.stack);
+    }
+  }
+};
+
+module.exports = {
+  findUser,
+  addUser
+};

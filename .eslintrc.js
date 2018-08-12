@@ -3,6 +3,7 @@ module.exports = {
     "rules": {
         "comma-dangle":0,
         'consistent-return':0,
-        'prefer-destructuring': 0
+        'prefer-destructuring': 0,
+        'eqeqeq': 0
     }
 };
