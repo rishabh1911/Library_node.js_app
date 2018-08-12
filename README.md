@@ -38,6 +38,9 @@ $ git clone https://github.com/rishabh1911/library.git
 $ npm run startWindows
 ```
 
+Then open browser and hit url http://localhost:3000/admin once.
+Then open http://localhost:3000/ to run the app.
+
 ### Tools
 
 Library is developed using the following tools.
