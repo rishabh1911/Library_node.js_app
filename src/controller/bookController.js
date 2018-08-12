@@ -1,5 +1,5 @@
 const debug = require('debug')('app:bookController');
-const mongoService = require('../repo/mongoService');
+const mongoService = require('../repo/mongoService')();
 
 // using revealing mudule pattern
 // in this we have a function which has a lot of functions in it.
@@ -8,7 +8,7 @@ function bookController(nav) {
   function getAllBooks(req, res) {
     debug('Books listed');
     (async function f2() {
-      const books = await mongoService.getAllBooks.mgetAllBooks();
+      const books = await mongoService.getAllBooks();
       res.render('bookListView', {
         title: 'books',
         books,
@@ -21,7 +21,7 @@ function bookController(nav) {
     const { id } = req.params;
     (async function f3() {
       debug('A');
-      const book = await mongoService.getBookById.mGetBookbyId(id);
+      const book = await mongoService.getBookbyId(id);
       debug(book);
       res.render('bookView', {
         title: 'books',

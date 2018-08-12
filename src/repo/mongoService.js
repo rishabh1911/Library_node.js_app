@@ -4,8 +4,8 @@ const { MongoClient, ObjectID } = require('mongodb');
 const mongoConstants = require('../constants/mongoConstants');
 const booksFromConstant = require('../constants/books');
 
-const insertFirstTime = {
-  async mInsertFirstTime() {
+function mongoService() {
+  async function insertFirstTime() {
     let client;
     debug('before try');
     try {
@@ -23,10 +23,7 @@ const insertFirstTime = {
     }
   }
 
-};
-
-const getAllBooks = {
-  async mgetAllBooks() {
+  async function getAllBooks() {
     let client;
     try {
       client = await MongoClient.connect(mongoConstants.mongoUrl, { useNewUrlParser: true });
@@ -41,10 +38,8 @@ const getAllBooks = {
       client.close();
     }
   }
-};
 
-const getBookById = {
-  async  mGetBookbyId(id) {
+  async function getBookbyId(id) {
     let client;
     try {
       client = await MongoClient.connect(mongoConstants.mongoUrl, { useNewUrlParser: true });
@@ -61,10 +56,12 @@ const getBookById = {
       client.close();
     }
   }
-};
 
-module.exports = {
-  insertFirstTime,
-  getAllBooks,
-  getBookById
-};
+  return {
+    insertFirstTime,
+    getAllBooks,
+    getBookbyId
+  };
+}
+
+module.exports = mongoService;
