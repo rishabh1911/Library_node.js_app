@@ -37,7 +37,18 @@ const findUser = {
   }
 };
 
+const addAdmin = {
+  async mAddAdminUser() {
+    const admin = {
+      username: 'admin',
+      password: 'admin'
+    };
+    return addUser.mAddUser(admin);
+  }
+};
+
 module.exports = {
   findUser,
-  addUser
+  addUser,
+  addAdmin
 };
