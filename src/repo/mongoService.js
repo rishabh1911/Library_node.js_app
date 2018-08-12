@@ -10,9 +10,9 @@ const insertFirstTime = {
     debug('before try');
     try {
       client = await MongoClient.connect(mongoConstants.mongoUrl, { useNewUrlParser: true });
-      debug('connected to server');
+      debug('connected to MongoDb');
       const db = client.db(mongoConstants.dbName);
-      const mongoResponse = await db.collection(mongoConstants.collectionName)
+      const mongoResponse = await db.collection(mongoConstants.booksCollectionName)
         .insertMany(booksFromConstant);
       return mongoResponse;
     } catch (err) {
@@ -32,7 +32,7 @@ const getAllBooks = {
       client = await MongoClient.connect(mongoConstants.mongoUrl, { useNewUrlParser: true });
       debug('connected to server');
       const db = client.db(mongoConstants.dbName);
-      const books = await db.collection(mongoConstants.collectionName).find().toArray();
+      const books = await db.collection(mongoConstants.booksCollectionName).find().toArray();
       return books;
     } catch (err) {
       debug(err.stack);
@@ -50,7 +50,7 @@ const getBookById = {
       client = await MongoClient.connect(mongoConstants.mongoUrl, { useNewUrlParser: true });
       debug('Inside getBookbyId');
       const db = client.db(mongoConstants.dbName);
-      const book = await db.collection(mongoConstants.collectionName)
+      const book = await db.collection(mongoConstants.booksCollectionName)
         .findOne({ _id: new ObjectID(id) });
       // debug(book);
       return book;

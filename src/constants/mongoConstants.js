@@ -1,11 +1,13 @@
 
 const mongoUrl = 'mongodb://localhost:27017';
 const dbName = 'libraryApp';
-const collectionName = 'Books';
+const booksCollectionName = 'Books';
+const authCollectionName = 'Users';
 
 
 module.exports = {
   mongoUrl,
   dbName,
-  collectionName
+  booksCollectionName,
+  authCollectionName
 };
