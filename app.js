@@ -3,17 +3,25 @@ const chalk = require('chalk');
 const debug = require('debug')('app');
 const morgan = require('morgan');
 const path = require('path');
-const bodyparser = require('body-parser');// from node modules
-
+const bodyparser = require('body-parser');
+const passport = require('passport');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+// from node modules
 
 const port = process.env.port || 8080;
 const app = express();
 
-// morgan used to console log all web traffic logs
+// morgan used to console log all web traffic logs, it is a middle-ware
 app.use(morgan('tiny'));
 // to get body from post
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: false }));
+// for authorization
+app.use(cookieParser());
+app.use(session({ secret: 'library' }));
+
+require('./src/config/passport.js')(app);
 // use static files in public folder
 app.use(express.static(path.join(__dirname, 'public')));
 // to avoid copy paste of js and css files we can give commands for alternate paths.
