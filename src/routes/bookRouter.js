@@ -5,7 +5,9 @@ const middleware = require('../controller/authoriseMiddleware');
 const bookRouter = express.Router();
 
 function router(nav) {
-  const { getAllBooks, getBookById } = bookController(nav);
+  const {
+    getAllBooks, getBookById, insertBook, getInsertBookPage
+  } = bookController(nav);
   const { authoriseMiddleWare } = middleware();
 
   // adding middleware to stop access to book before authentication
@@ -15,8 +17,13 @@ function router(nav) {
   bookRouter.route('/')
     .get(getAllBooks);
 
-  bookRouter.route('/:id')
+  // added myBook in path as :id and addBook map to same route
+  bookRouter.route('/myBook/:id')
     .get(getBookById);
+
+  bookRouter.route('/addBook')
+    .get(getInsertBookPage)
+    .post(insertBook);
 
   return bookRouter;
 }

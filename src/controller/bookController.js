@@ -31,9 +31,32 @@ function bookController(nav) {
     }());
   }
 
+  async function insertBook(req, res) {
+    const {
+      title, genre, author, read
+    } = req.body;
+    const book = {
+      title, genre, author, read
+    };
+    (async function addBookToDB() {
+      const savedBook = await mongoService.insertBook(book);
+      debug(savedBook);
+      res.redirect('/books');
+    }());
+  }
+
+  function getInsertBookPage(req, res) {
+    res.render('bookAddView', {
+      title: 'Add Book',
+      nav
+    });
+  }
+
   return {
     getAllBooks,
-    getBookById
+    getBookById,
+    insertBook,
+    getInsertBookPage
   };
 }
 

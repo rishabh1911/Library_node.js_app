@@ -6,12 +6,12 @@
 		<title><%=title%></title>
 		<meta name="generator" content="Bootply" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="/css/bootstrap.min.css" rel="stylesheet">
 		<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
 		<!--[if lt IE 9]>
 			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
-		<link href="css/styles.css" rel="stylesheet">
+		<link href="/css/styles.css" rel="stylesheet">
 	</head>
 	<body>
 <header class="navbar navbar-bright navbar-fixed-top" role="banner">
@@ -51,7 +51,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-7">
-        <h1><%=title%>
+        <h1>Add Your Book
           <p class="lead"></p>
         </h1>
       </div>
@@ -88,29 +88,25 @@
         <div class="panel-body">
           
           
-          <%for(var i=0;i<books.length;i++){%>
-            <div class="row">    
+          
+          <!--/stories-->
+          <div class="row">    
             <br>
             <div class="col-md-2 col-sm-3 text-center">
-            </div>
-            <div class="col-md-10 col-sm-9">
-              <h3><%=books[i].title%></h3>
-              <div class="row">
-                <div class="col-xs-9">
-                  <h4><span class="label label-default"><%=books[i].author%></span></h4><h4>
-                  
-                  <a href="/books/myBook/<%=books[i]._id%>" class="text-muted">Read More</a></small>
-                  </h4></div>
-                <div class="col-xs-3"></div>
-              </div>
-              <br><br>
+            <br/><br/>
+            <form name="addBookForm" action="/books/addBook" method="post">
+              title: <input name="title" id="title" /><br/>
+              genre: <input name="genre" id="genre" /><br/>
+              author: <input name="author" id="author" /><br/>
+              read: <input name="read" id="read" /> Enter true of False<br/>
+              <input type="submit" value="Add Book">
+            </form>
             </div>
           </div>
           <hr>
-        <%}%>
           
           
-          <a href="/books/addBook" class="btn btn-primary pull-right btnNext">Add Book <i class="glyphicon glyphicon-chevron-right"></i></a>
+          <a href="/" class="btn btn-primary pull-right btnNext">More <i class="glyphicon glyphicon-chevron-right"></i></a>
         
           
         </div>
@@ -124,6 +120,7 @@
                                                 
                                                                                 
 <hr>
+
 <hr>
 
 <hr>
@@ -148,6 +145,6 @@
 </footer>
 	<!-- script references -->
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
+		<script src="/js/bootstrap.min.js"></script>
 	</body>
 </html>

@@ -23,6 +23,24 @@ function mongoService() {
     }
   }
 
+  async function insertBook(book) {
+    let client;
+    debug('before try');
+    try {
+      client = await MongoClient.connect(mongoConstants.mongoUrl, { useNewUrlParser: true });
+      debug('connected to MongoDb');
+      const db = client.db(mongoConstants.dbName);
+      const mongoResponse = await db.collection(mongoConstants.booksCollectionName)
+        .insertOne(book);
+      return mongoResponse;
+    } catch (err) {
+      debug(err.stack);
+    }
+    if (client !== undefined) {
+      client.close();
+    }
+  }
+
   async function getAllBooks() {
     let client;
     try {
@@ -59,6 +77,7 @@ function mongoService() {
 
   return {
     insertFirstTime,
+    insertBook,
     getAllBooks,
     getBookbyId
   };
