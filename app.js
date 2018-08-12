@@ -41,8 +41,7 @@ app.set('view engine', 'ejs');
 //   response.sendFile(path.join(__dirname, 'views', 'index.html'));
 // });
 
-const nav = [{ title: 'Books', link: '/books' },
-  { title: 'Author', link: 'authors' }];
+const nav = [{ title: 'Books', link: '/books' }];
 
 const bookRoutes = require('./src/routes/bookRouter')(nav); // from files
 const adminRoutes = require('./src/routes/adminRouter')();
