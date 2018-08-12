@@ -6,7 +6,7 @@ const bookRouter = express.Router();
 
 function router(nav) {
   const {
-    getAllBooks, getBookById, insertBook, getInsertBookPage
+    getAllBooks, getBookById, insertBook, getInsertBookPage, deleteBook
   } = bookController(nav);
   const { authoriseMiddleWare } = middleware();
 
@@ -19,7 +19,8 @@ function router(nav) {
 
   // added myBook in path as :id and addBook map to same route
   bookRouter.route('/myBook/:id')
-    .get(getBookById);
+    .get(getBookById)
+    .post(deleteBook);
 
   bookRouter.route('/addBook')
     .get(getInsertBookPage)

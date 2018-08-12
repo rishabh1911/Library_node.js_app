@@ -75,11 +75,30 @@ function mongoService() {
     }
   }
 
+  async function deleteBookbyId(id) {
+    let client;
+    try {
+      client = await MongoClient.connect(mongoConstants.mongoUrl, { useNewUrlParser: true });
+      debug('Inside deleteBookbyId');
+      const db = client.db(mongoConstants.dbName);
+      const book = await db.collection(mongoConstants.booksCollectionName)
+        .deleteOne({ _id: new ObjectID(id) });
+      // debug(book);
+      return book;
+    } catch (err) {
+      debug(err.stack);
+    }
+    if (client !== undefined) {
+      client.close();
+    }
+  }
+
   return {
     insertFirstTime,
     insertBook,
     getAllBooks,
-    getBookbyId
+    getBookbyId,
+    deleteBookbyId
   };
 }
 

@@ -20,7 +20,7 @@ function bookController(nav) {
   function getBookById(req, res) {
     const { id } = req.params;
     (async function f3() {
-      debug('A');
+      debug('Inside get book by Id');
       const book = await mongoService.getBookbyId(id);
       debug(book);
       res.render('bookView', {
@@ -52,11 +52,22 @@ function bookController(nav) {
     });
   }
 
+  function deleteBook(req, res) {
+    const { id } = req.params;
+    (async function deleteBookFromDB() {
+      debug('delete Book');
+      const book = await mongoService.deleteBookbyId(id);
+      debug(book);
+      res.redirect('/books');
+    }());
+  }
+
   return {
     getAllBooks,
     getBookById,
     insertBook,
-    getInsertBookPage
+    getInsertBookPage,
+    deleteBook
   };
 }
 

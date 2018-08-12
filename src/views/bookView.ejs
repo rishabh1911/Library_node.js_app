@@ -97,6 +97,9 @@
               <div class="row">
                 <div class="col-xs-9">
                   <h4><span class="label label-default"><%=book.author%></span></h4><h4>
+                  <form name="deleteForm"  action="/books/myBook/<%=book._id%>" method="post">
+                <input type="submit" value="Delete This Book" />
+              </form>
                   </h4></div>
                 <div class="col-xs-3"></div>
               </div>
