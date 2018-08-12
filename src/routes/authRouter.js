@@ -38,6 +38,13 @@ function router(nav) {
     }));
 
   authRouter.route('/profile')
+    .all((req, res, next) => {
+      if (req.user) {
+        next();
+      } else {
+        res.redirect('/');
+      }
+    })
     .get((req, res) => {
       if (req.user == null) {
         res.redirect('/');

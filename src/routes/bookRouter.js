@@ -5,6 +5,16 @@ const mongoService = require('../repo/mongoService');
 const bookRouter = express.Router();
 
 function router(nav) {
+  // adding middleware to stop access to book before authentication
+  bookRouter.use((req, res, next) => {
+    if (req.user) {
+      next();
+    } else {
+      res.redirect('/');
+    }
+  });
+
+  // All book Routes
   bookRouter.route('/')
     .get((req, res) => {
       debug('Books listed');
