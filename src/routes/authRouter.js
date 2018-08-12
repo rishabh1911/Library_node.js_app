@@ -7,7 +7,17 @@ function router() {
   authRouter.route('/signUp')
     .post((req, res) => {
       debug(req.body);
-      res.json(req.body);
+
+      // create user and authorize it by attaching user to subsequent requests
+      // and redirect to new page
+      req.login(req.body, () => {
+        res.redirect('/auth/profile');
+      });
+    });
+
+  authRouter.route('/profile')
+    .get((req, res) => {
+      res.json(req.user);
     });
   return authRouter;
 }
